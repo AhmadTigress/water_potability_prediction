@@ -1,0 +1,19 @@
+/model.pkl
+/metrics.json
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Data and Models (Let DVC handle these)
+/data/
+/model.pkl
+
+# Metrics (Optional: some prefer to keep these in Git to see history)
+# metrics.json
