@@ -9,11 +9,11 @@ stages:
       size: 1677
     params:
       params.yaml:
-        data_collection.test_size: 0.25
+        data_collection.test_size: 0.1
     outs:
     - path: data/raw
       hash: md5
-      md5: 4f9f1b6cafe09da487d523dae3a6fe82.dir
+      md5: 5d8d12cd733707142b7bb7363dd7f84d.dir
       size: 518984
       nfiles: 2
   pre_processing:
@@ -21,7 +21,7 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: 4f9f1b6cafe09da487d523dae3a6fe82.dir
+      md5: 5d8d12cd733707142b7bb7363dd7f84d.dir
       size: 518984
       nfiles: 2
     - path: src/data/data_prep.py
@@ -31,7 +31,7 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: a8104fe8bd7211d663e2dffdfc61489c.dir
+      md5: 368e7d290d23cac0f94945232f6032ef.dir
       size: 518608
       nfiles: 2
   model_building:
@@ -39,7 +39,7 @@ stages:
     deps:
     - path: data/processed
       hash: md5
-      md5: a8104fe8bd7211d663e2dffdfc61489c.dir
+      md5: 368e7d290d23cac0f94945232f6032ef.dir
       size: 518608
       nfiles: 2
     - path: src/model/model_building.py
@@ -48,25 +48,25 @@ stages:
       size: 2196
     params:
       params.yaml:
-        model_building.n_estimators: 120
+        model_building.n_estimators: 1000
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 6f263350c4edc2e7a709737d354d672f
-      size: 8136678
+      md5: 7ad6b249a95eb9e384b1f63bf2665b2f
+      size: 80733862
   model_evaluation:
     cmd: python3 src/model/model_eval.py
     deps:
     - path: models/model.pkl
       hash: md5
-      md5: 6f263350c4edc2e7a709737d354d672f
-      size: 8136678
+      md5: 7ad6b249a95eb9e384b1f63bf2665b2f
+      size: 80733862
     - path: src/model/model_eval.py
       hash: md5
-      md5: 790514a6130b3f10d0289d56c30e7b24
-      size: 2514
+      md5: 39405ef17b7ca3af14a2dd3e0f7900e4
+      size: 3092
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: d08ef656735425a9dd8df59a59e77225
+      md5: f43a24660931e897e7f9bd325b9d0f08
       size: 151
